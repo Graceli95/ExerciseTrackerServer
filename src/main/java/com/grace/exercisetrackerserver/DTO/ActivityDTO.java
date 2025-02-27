@@ -14,5 +14,4 @@ public class ActivityDTO {
     private double distance;
     private int caloriesBurned;
 
-
 }

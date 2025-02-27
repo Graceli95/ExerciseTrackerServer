@@ -8,6 +8,9 @@ import com.grace.exercisetrackerserver.repositories.ActivityRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class ActivityServiceImpl implements ActivityService {
@@ -16,8 +19,8 @@ public class ActivityServiceImpl implements ActivityService {
 
     public ActivityDTO postActivity(ActivityDTO dto) { //this method will return activity dto
 
-        //in the body of this method, we need to get the data from the dto and we need to create an activity
-        //to do this, first we need create an object of this activity entity
+        //in the body of this method, we need to get the data from the dto
+        // first we need create an object of this activity entity
         Activity activity = new Activity();
 
         activity.setDate(dto.getDate());
@@ -25,9 +28,13 @@ public class ActivityServiceImpl implements ActivityService {
         activity.setDistance(dto.getDistance());
         activity.setCaloriesBurned(dto.getCaloriesBurned());
 
-        return activityRepository.save(activity).getActivityDTO();
+        return activityRepository.save(activity).getActivityDTO();     //why here double checking DTO
 
+    }
 
+    public List<ActivityDTO> getAllActivities() {
+        List<Activity> activities = activityRepository.findAll();
+        return activities.stream().map(Activity::getActivityDTO).collect(Collectors.toList());
     }
 
 }

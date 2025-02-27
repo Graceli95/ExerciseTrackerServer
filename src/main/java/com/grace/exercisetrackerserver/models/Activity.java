@@ -37,5 +37,9 @@ public class Activity {
         return activityDTO;
 
     }
-
 }
+/*
+questions to ask:
+why we need DTO here?
+what situation doesn't need DTO?
+ */

@@ -3,6 +3,7 @@ package com.grace.exercisetrackerserver.controllers;
 import com.grace.exercisetrackerserver.DTO.ActivityDTO;
 import com.grace.exercisetrackerserver.services.ActivityService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor //Ensures the constructor is generated for final fields
-@CrossOrigin("*")  //for the path, we pass it as static
+@CrossOrigin("*")
 public class ActivityController {
 
     //inject ActivityService
@@ -28,4 +29,15 @@ public class ActivityController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong.");
         }
     }
+
+    @GetMapping("/activities")
+    public ResponseEntity<?> getAllActivities() {
+        try{
+            return ResponseEntity.ok(activityService.getAllActivities());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong.");
+        }
+    }
 }
+
+//ask
