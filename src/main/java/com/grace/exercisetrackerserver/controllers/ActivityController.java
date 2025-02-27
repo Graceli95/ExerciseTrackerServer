@@ -9,16 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-//@RequiredArgsConstructor //Ensures the constructor is generated for final fields
+@RequiredArgsConstructor //Ensures the constructor is generated for final fields
 @CrossOrigin("*")  //for the path, we pass it as static
 public class ActivityController {
 
     //inject ActivityService
     private final ActivityService activityService;
-
-    public ActivityController(ActivityService activityService) {
-        this.activityService = activityService;
-    }
 
     //this method will return response entity and we will import it from spring.framework.http
     @PostMapping("/activity")

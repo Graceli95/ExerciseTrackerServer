@@ -9,13 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class ActivityServiceImpl implements ActivityService {
     private final ActivityRepository activityRepository;
-
-    public ActivityServiceImpl(ActivityRepository activityRepository) {
-        this.activityRepository = activityRepository;
-    }
+    
 
     public ActivityDTO postActivity(ActivityDTO dto) { //this method will return activity dto
 

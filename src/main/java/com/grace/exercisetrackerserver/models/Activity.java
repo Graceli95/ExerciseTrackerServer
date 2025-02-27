@@ -11,7 +11,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-//@Data
+@Data
 public class Activity {
 
     @Id
@@ -23,37 +23,6 @@ public class Activity {
     private double distance;
     private int caloriesBurned;
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public int getSteps() {
-        return steps;
-    }
-
-    public void setSteps(int steps) {
-        this.steps = steps;
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
-    public int getCaloriesBurned() {
-        return caloriesBurned;
-    }
-
-    public void setCaloriesBurned(int caloriesBurned) {
-        this.caloriesBurned = caloriesBurned;
-    }
 
     public ActivityDTO getActivityDTO(){
 
