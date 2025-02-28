@@ -10,3 +10,4 @@ public interface ActivityService {
 
     List<ActivityDTO> getAllActivities();
 }
+

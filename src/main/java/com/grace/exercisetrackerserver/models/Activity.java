@@ -28,18 +28,20 @@ public class Activity {
 
         ActivityDTO activityDTO = new ActivityDTO();
 
-        activityDTO.setId(id);
+
         activityDTO.setDate(date);
         activityDTO.setSteps(steps);
         activityDTO.setDistance(distance);
         activityDTO.setCaloriesBurned(caloriesBurned);
 
         return activityDTO;
-
     }
 }
-/*
-questions to ask:
-why we need DTO here?
-what situation doesn't need DTO?
+
+/**
+ * This code is used to **convert entity objects (`Activity`) into their corresponding DTOs (`ActivityDTO`)**. The transformation is necessary because:
+ * - **Separation of Concerns**: The `Activity` entity is tied to the database structure, while `ActivityDTO` is designed for transferring data (e.g., to clients via APIs) without exposing internal data structures.
+ * - **Decoupling**: Using a DTO allows more flexibility in structuring the data sent to the client. For example, you can include or exclude fields, rename fields, modify data formats, and so on without altering the database schema.
+ *
+ * In this context, the `getActivityDTO()` method in `Activity` simplifies this transformation.
  */
