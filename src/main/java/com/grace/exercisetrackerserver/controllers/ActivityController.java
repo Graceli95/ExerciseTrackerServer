@@ -3,7 +3,7 @@ package com.grace.exercisetrackerserver.controllers;
 import com.grace.exercisetrackerserver.DTO.ActivityDTO;
 import com.grace.exercisetrackerserver.services.ActivityService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ActivityController {
 
     //inject ActivityService
+    @Autowired
     private final ActivityService activityService;
 
 
@@ -34,7 +35,7 @@ public class ActivityController {
 
 
     @GetMapping("/activities")
-    public ResponseEntity<?> getAllActivities() { // Business logic for fetching all activities
+    public ResponseEntity<?> getActivities() { // Business logic for fetching all activities
         try{
             return ResponseEntity.ok(activityService.getAllActivities());
         }catch(Exception e){

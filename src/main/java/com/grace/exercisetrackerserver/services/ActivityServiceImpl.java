@@ -6,6 +6,7 @@ import com.grace.exercisetrackerserver.models.Activity;
 import com.grace.exercisetrackerserver.repositories.ActivityRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ActivityServiceImpl implements ActivityService {
+
+    @Autowired
     private final ActivityRepository activityRepository;
     
 

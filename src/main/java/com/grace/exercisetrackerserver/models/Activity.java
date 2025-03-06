@@ -1,10 +1,8 @@
 package com.grace.exercisetrackerserver.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grace.exercisetrackerserver.DTO.ActivityDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -18,6 +16,8 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @Column
+//    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private int steps;
     private double distance;
