@@ -1,8 +1,5 @@
 package com.grace.exercisetrackerserver.models;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.grace.exercisetrackerserver.DTO.WorkoutDTO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -32,26 +29,25 @@ public class Workout {
     @Column(name = "calories_burned", nullable = false)
     private int caloriesBurned;
 
-    @ManyToOne
-    @JoinColumn(name = "base_user_Id", nullable = false)
-    @JsonBackReference // 🔹 Prevents infinite recursion
-    private BaseUser baseUser; // 🔹 This links Workout to a User
+    @ManyToOne(fetch = FetchType.LAZY) // Use Lazy Loading
+    @JoinColumn(name = "base_user_id", nullable = false)
+    private BaseUser baseUser; // 🔹reference BaseUser, This links Workout to a User
 
-    @JsonIgnore
-    public WorkoutDTO getWorkoutDto(){
-        WorkoutDTO workoutDTO = new WorkoutDTO();
-        workoutDTO.setId(id);
-        workoutDTO.setType(type);
-        workoutDTO.setDate(date);
-        workoutDTO.setDuration(duration);
-        workoutDTO.setCaloriesBurned(caloriesBurned);
 
-        if(baseUser != null){
-            workoutDTO.setBaseUserId(baseUser.getId());
-        }
-
-        return workoutDTO;
-    }
+//    public WorkoutDTO getWorkoutDto(){
+//        WorkoutDTO workoutDTO = new WorkoutDTO();
+//        workoutDTO.setId(id);
+//        workoutDTO.setType(type);
+//        workoutDTO.setDate(date);
+//        workoutDTO.setDuration(duration);
+//        workoutDTO.setCaloriesBurned(caloriesBurned);
+//
+//        if(baseUser != null){
+//            workoutDTO.setBaseUserId(baseUser.getId());
+//        }
+//
+//        return workoutDTO;
+//    }
 
     @Override
     public boolean equals(Object o) {

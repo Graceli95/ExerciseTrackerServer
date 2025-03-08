@@ -1,6 +1,5 @@
 package com.grace.exercisetrackerserver.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grace.exercisetrackerserver.DTO.ActivityDTO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,30 +16,36 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @Column
-//    @JsonFormat(pattern = "yyyy-MM-dd")
+
+    @Column(nullable = false)
     private Date date;
+
+    @Column(nullable = false)
     private int steps;
+
+    @Column(nullable = false)
     private double distance;
+
+    @Column(nullable = false)
     private int caloriesBurned;
 
-//    @ManyToOne
-//    @JoinColumn(name = "baseUserId", nullable = false)
-//    private BaseUser baseUser;
+    @ManyToOne
+    @JoinColumn(name = "base_user_id", nullable = false)
+    private BaseUser baseUser;
 
 
-    public ActivityDTO getActivityDTO(){
-
-        ActivityDTO activityDTO = new ActivityDTO();
-
-
-        activityDTO.setDate(date);
-        activityDTO.setSteps(steps);
-        activityDTO.setDistance(distance);
-        activityDTO.setCaloriesBurned(caloriesBurned);
-
-        return activityDTO;
-    }
+//    public ActivityDTO getActivityDTO(){
+//
+//        ActivityDTO activityDTO = new ActivityDTO();
+//
+//
+//        activityDTO.setDate(date);
+//        activityDTO.setSteps(steps);
+//        activityDTO.setDistance(distance);
+//        activityDTO.setCaloriesBurned(caloriesBurned);
+//
+//        return activityDTO;
+//    }
 
     @Override
     public boolean equals(Object o) {
