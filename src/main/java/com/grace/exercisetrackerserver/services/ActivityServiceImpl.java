@@ -13,11 +13,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class ActivityServiceImpl implements ActivityService {
 
-    @Autowired
     private final ActivityRepository activityRepository;
+
+    @Autowired
+    public ActivityServiceImpl(ActivityRepository activityRepository) {
+        this.activityRepository = activityRepository;
+    }
     
 
     public ActivityDTO postActivity(ActivityDTO dto) { //this method will return activity dto

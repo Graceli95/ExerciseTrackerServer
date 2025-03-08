@@ -7,6 +7,7 @@ import lombok.Data;
 
 
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -23,6 +24,10 @@ public class Activity {
     private double distance;
     private int caloriesBurned;
 
+//    @ManyToOne
+//    @JoinColumn(name = "baseUserId", nullable = false)
+//    private BaseUser baseUser;
+
 
     public ActivityDTO getActivityDTO(){
 
@@ -35,6 +40,18 @@ public class Activity {
         activityDTO.setCaloriesBurned(caloriesBurned);
 
         return activityDTO;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Activity activity = (Activity) o;
+        return Objects.equals(id, activity.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
 

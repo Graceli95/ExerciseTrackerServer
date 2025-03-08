@@ -10,13 +10,18 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController       // It is used to create RESTful web services by combining `@Controller` and `@ResponseBody`.
 @RequestMapping("/api")
-@RequiredArgsConstructor //Ensures the constructor is generated for final fields
+//@RequiredArgsConstructor //Ensures the constructor is generated for final fields
 @CrossOrigin("*")
 public class ActivityController {
 
+
+    private final ActivityService activityService;
+
     //inject ActivityService
     @Autowired
-    private final ActivityService activityService;
+    public ActivityController(ActivityService activityService) {
+        this.activityService = activityService;
+    }
 
 
     @PostMapping("/activity")
