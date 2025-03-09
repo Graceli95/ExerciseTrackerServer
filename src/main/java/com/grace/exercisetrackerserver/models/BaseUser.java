@@ -1,7 +1,4 @@
 package com.grace.exercisetrackerserver.models;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -13,7 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "base_user")
 @Data
-@ToString(exclude = "workouts")
+
 public class BaseUser {
 
     @Id
@@ -29,14 +26,8 @@ public class BaseUser {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private int age;
-
-    private double weight; // in kg or lbs
-    private double height;
-
-    @OneToMany(mappedBy = "baseUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonIgnore // 🔹Prevents infinite loop when returning user info
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "base_user_id") // This ensures foreign key is created in Workout
     private List<Workout> workouts = new ArrayList<>();
 
     @Override

@@ -21,7 +21,7 @@ public class ActivityServiceImpl implements ActivityService {
     public ActivityServiceImpl(ActivityRepository activityRepository) {
         this.activityRepository = activityRepository;
     }
-    
+
 
     public ActivityDTO postActivity(ActivityDTO dto) { //this method will return activity dto
 
