@@ -44,9 +44,9 @@ public class BaseUserController {
         }
     }
 
-    @GetMapping("/{id}/workouts")
-    public ResponseEntity<List<Workout>> getWorkouts(@PathVariable Long id){
-        Optional<BaseUser> user = baseUserService.findBaseUserById(id);
+    @GetMapping("/{userId}/workouts")
+    public ResponseEntity<List<Workout>> getWorkouts(@PathVariable Long userId){
+        Optional<BaseUser> user = baseUserService.findBaseUserById(userId);
         if (user.isPresent()) {
             List<Workout> workouts = user.get().getWorkouts();
             return ResponseEntity.ok(workouts);

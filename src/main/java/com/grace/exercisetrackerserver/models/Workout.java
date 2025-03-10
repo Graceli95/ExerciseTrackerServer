@@ -28,7 +28,7 @@ public class Workout {
     @Column(name = "calories_burned", nullable = false)
     private int caloriesBurned;
 
-    // 🔹 make visible, so that new workouts can store their userId, 
+    // 🔹 make visible, so that new workouts can store their userId,
     @Column(name = "base_user_id", nullable = false)
     private Long baseUserId;
 

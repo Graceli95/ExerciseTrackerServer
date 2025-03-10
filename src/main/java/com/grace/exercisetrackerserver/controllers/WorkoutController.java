@@ -21,7 +21,7 @@ public class WorkoutController {
         this.workoutService = workoutService;
     }
 
-    @PostMapping("/new/user/{userId}")
+    @PostMapping("/user/{userId}/new")
     public ResponseEntity<Workout> createWorkout(@PathVariable Long userId, @RequestBody Workout workout){
         Workout savedWorkout = workoutService.createWorkout(userId, workout);
         return ResponseEntity.ok(savedWorkout);
