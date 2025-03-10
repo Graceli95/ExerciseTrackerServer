@@ -1,8 +1,8 @@
 # Per Scholas Java Full Stack Bootcamp Capstone Project: LifestyleFitnessTracker
 A comprehensive platform for tracking diet, workouts, and overall fitness journey while fostering social connections.
 
+<img width="1792" alt="Screenshot 2025-03-09 at 10 35 22 PM" src="https://github.com/user-attachments/assets/f4c30f0f-da01-4405-b687-011addb4f261" />
 <img width="1001" alt="fitdemoProjectERD" src="https://github.com/user-attachments/assets/dee2c7a5-b61f-4702-9a22-23b78de276ba" />
-
 
 
 Here's the text-based representation of the relationships for the ER Diagram:
