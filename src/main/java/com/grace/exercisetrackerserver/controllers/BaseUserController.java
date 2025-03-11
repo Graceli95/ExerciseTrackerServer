@@ -37,8 +37,17 @@ public class BaseUserController {
     public ResponseEntity<BaseUser> loginUser(@RequestBody BaseUser baseUser) {
         try {
             Optional<BaseUser> user = baseUserService.authenticateUser(baseUser.getEmail(), baseUser.getPassword());
-            return user.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+            if (user.isPresent()){
+                return new  ResponseEntity<>(user.get(), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+
+////            return user.map(ResponseEntity::ok)
+//            return new ResponseEntity<>(user.get() ,HttpStatus.OK);
+
+//                    .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+
         } catch (Exception e) {
             return null;
         }

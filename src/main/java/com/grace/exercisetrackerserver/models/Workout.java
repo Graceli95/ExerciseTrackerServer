@@ -1,5 +1,6 @@
 package com.grace.exercisetrackerserver.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.grace.exercisetrackerserver.DTO.WorkoutDTO;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Workout {
     private String type; // e.g., Strength, Cardio, Yoga, etc.
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     @Column(nullable = false)

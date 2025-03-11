@@ -23,8 +23,12 @@ public class WorkoutController {
 
     @PostMapping("/user/{userId}/new")
     public ResponseEntity<Workout> createWorkout(@PathVariable Long userId, @RequestBody Workout workout){
+        System.out.println(workout);
         Workout savedWorkout = workoutService.createWorkout(userId, workout);
+        System.out.println(savedWorkout);
+
         return ResponseEntity.ok(savedWorkout);
+
     }
 
     @PutMapping("/update/{id}")
@@ -43,16 +47,15 @@ public class WorkoutController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-//✅ Allows fetching, creating, updating, and deleting workouts.
-
-
-
     @GetMapping("/users/{userId}")
     public ResponseEntity<List<Workout>> getUsersWorkouts(@PathVariable Long userId){
         List<Workout> workouts = workoutService.getAllWorkoutsByUserId(userId);
         return workouts.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(workouts);
 
     }
+
+
+    //✅ Allows fetching, creating, updating, and deleting workouts.
 //    @PutMapping("/workouts/{id}")
 //    public ResponseEntity<Workout> updateWorkout(@PathVariable Long id, @RequestBody Workout updatedWorkout) {
 ////        Workout workout = workoutService.updateWorkout(updatedWorkout);

@@ -30,6 +30,10 @@ public class BaseUser {
     @JoinColumn(name = "base_user_id") // This ensures foreign key is created in Workout
     private List<Workout> workouts = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name="base_user_id")
+    private List<Activity> activities = new ArrayList<>();
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
