@@ -23,9 +23,17 @@ public class ActivityController {
     @PostMapping("/user/{userId}/new")
     ResponseEntity<Activity> createActivity(@PathVariable Long userId, @RequestBody Activity activity){
         Activity activityCreated = activityService.createActivity(userId, activity);
+        System.out.println(activityCreated);
         return ResponseEntity.ok(activityCreated);
 
     }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<List<Activity>> getUsersActivities(@PathVariable Long userId){
+        List<Activity> activities = activityService.getAllActivitiesByUserId(userId);
+        return activities.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(activities);
+    }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Activity> updateActivity(@PathVariable Long id, @RequestBody Activity updatedActivity){
@@ -36,13 +44,6 @@ public class ActivityController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping("/users/{userId}")
-    public ResponseEntity<List<Activity>> getUsersActivities(@PathVariable Long userId){
-        List<Activity> activities = activityService.getAllActivitiesByUserId(userId);
-        return activities.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(activities);
-    }
-
 
     @DeleteMapping("/delete/{activityId}")
     public ResponseEntity<Void> deleteActivityById(@PathVariable Long activityId){
