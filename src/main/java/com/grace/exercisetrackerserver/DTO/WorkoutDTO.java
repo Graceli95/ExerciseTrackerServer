@@ -16,5 +16,5 @@ public class WorkoutDTO {
 
     private int caloriesBurned;
 
-    private Long baseUserId;
+//    private Long baseUserId;
 }

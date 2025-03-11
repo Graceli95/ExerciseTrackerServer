@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name = "activity")
 @Data
 public class Activity {
 
@@ -19,28 +20,21 @@ public class Activity {
 
 //    @Column
 //    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private Date date;
+    @Column(nullable = false)
     private int steps;
+    @Column(nullable = false)
     private double distance;
+    @Column(nullable = false)
     private int caloriesBurned;
+
+    @Column(name = "base_user_id", nullable = false)
+    private Long baseUserId;
 
 //    @ManyToOne
 //    @JoinColumn(name = "baseUserId", nullable = false)
 //    private BaseUser baseUser;
-
-
-    public ActivityDTO getActivityDTO(){
-
-        ActivityDTO activityDTO = new ActivityDTO();
-
-
-        activityDTO.setDate(date);
-        activityDTO.setSteps(steps);
-        activityDTO.setDistance(distance);
-        activityDTO.setCaloriesBurned(caloriesBurned);
-
-        return activityDTO;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -52,6 +46,17 @@ public class Activity {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public ActivityDTO getActivityDTO(){
+
+        ActivityDTO activityDTO = new ActivityDTO();
+        activityDTO.setDate(date);
+        activityDTO.setSteps(steps);
+        activityDTO.setDistance(distance);
+        activityDTO.setCaloriesBurned(caloriesBurned);
+
+        return activityDTO;
     }
 }
 
