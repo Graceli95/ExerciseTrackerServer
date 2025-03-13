@@ -29,6 +29,9 @@ public class Activity {
     @Column(nullable = false)
     private int caloriesBurned;
 
+    @Column(nullable = false)
+    private boolean completed = false; // New field to track completion
+
     @Column(name = "base_user_id", nullable = false)
     private Long baseUserId;
 
@@ -48,17 +51,21 @@ public class Activity {
         return Objects.hashCode(id);
     }
 
-    public ActivityDTO getActivityDTO(){
 
-        ActivityDTO activityDTO = new ActivityDTO();
-        activityDTO.setDate(date);
-        activityDTO.setSteps(steps);
-        activityDTO.setDistance(distance);
-        activityDTO.setCaloriesBurned(caloriesBurned);
-
-        return activityDTO;
-    }
 }
+
+
+
+//public ActivityDTO getActivityDTO(){
+//
+//    ActivityDTO activityDTO = new ActivityDTO();
+//    activityDTO.setDate(date);
+//    activityDTO.setSteps(steps);
+//    activityDTO.setDistance(distance);
+//    activityDTO.setCaloriesBurned(caloriesBurned);
+//
+//    return activityDTO;
+//}
 
 /**
  * This code is used to **convert entity objects (`Activity`) into their corresponding DTOs (`ActivityDTO`)**. The transformation is necessary because:

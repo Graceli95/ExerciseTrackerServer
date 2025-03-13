@@ -41,12 +41,23 @@ public class ActivityService {
         return activityRepository.save(activity);
     }
 
+    // ✅ Get activities by user ID (includes completed field)
     public List<Activity> getAllActivitiesByUserId(Long userId) {
         Optional<BaseUser> baseUser = baseUserRepository.findBaseUserById(userId);
         if(baseUser.isEmpty()){
             throw new RuntimeException("User not found");
         }
         return baseUser.get().getActivities();
+    }
+
+    // ✅ Toggle completion of an activity
+    public Activity toggleActivityCompletion(Long id) {
+        return activityRepository.findById(id)
+                .map(activity -> {
+                    activity.setCompleted(!activity.isCompleted());
+                    return activityRepository.save(activity);
+                })
+                .orElseThrow(() -> new RuntimeException("Activity not found"));
     }
 
     public Activity updateActivity(Long id, Activity updatedActivity) {
@@ -73,3 +84,26 @@ public class ActivityService {
 //Repositories → Handle database operations.
 //Services → Handle business logic.
 //Controllers → Handle API requests.
+
+
+//// ✅ Toggle completion of an activity
+//public Activity toggleActivityCompletion(Long id) {
+//    return activityRepository.findById(id)
+//            .map(activity -> {
+//                activity.setCompleted(!activity.isCompleted());
+//                return activityRepository.save(activity);
+//            })
+//            .orElseThrow(() -> new RuntimeException("Activity not found"));
+//}
+//these two is actually same
+//public Activity toggleActivityCompletion(Long id) {
+//    Optional<Activity> optionalActivity = activityRepository.findById(id);
+//
+//    if (optionalActivity.isPresent()) {
+//        Activity activity = optionalActivity.get();
+//        activity.setCompleted(!activity.isCompleted()); // Toggle the completed status
+//        return activityRepository.save(activity);
+//    } else {
+//        throw new RuntimeException("Activity not found");
+//    }
+//}

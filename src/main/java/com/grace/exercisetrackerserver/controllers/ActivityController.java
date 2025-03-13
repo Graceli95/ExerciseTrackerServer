@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController       // It is used to create RESTful web services by combining `@Controller` and `@ResponseBody`.
 @RequestMapping("/activities")
@@ -28,12 +29,29 @@ public class ActivityController {
 
     }
 
+    // ✅ Fetch all activities for a specific user
     @GetMapping("/users/{userId}")
     public ResponseEntity<List<Activity>> getUsersActivities(@PathVariable Long userId){
         List<Activity> activities = activityService.getAllActivitiesByUserId(userId);
         return activities.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(activities);
     }
 
+    // ✅ Toggle activity completion
+    @PatchMapping("/{activityId}/complete")
+    public ResponseEntity<Activity> toggleCompletion(@PathVariable Long activityId){
+        try{
+            Activity updatedActivity = activityService.toggleActivityCompletion(activityId);
+            return ResponseEntity.ok(updatedActivity);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/delete/{activityId}")
+    public ResponseEntity<Void> deleteActivityById(@PathVariable Long activityId){
+        activityService.deleteActivityById(activityId);
+        return ResponseEntity.status(204).build();
+    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Activity> updateActivity(@PathVariable Long id, @RequestBody Activity updatedActivity){
@@ -45,21 +63,18 @@ public class ActivityController {
         }
     }
 
-    @DeleteMapping("/delete/{activityId}")
-    public ResponseEntity<Void> deleteActivityById(@PathVariable Long activityId){
-        activityService.deleteActivityById(activityId);
-        return ResponseEntity.status(204).build();
-    }
 
     @GetMapping("/activity/{activityId}")
     public ResponseEntity<Activity> getActivityById(@PathVariable Long activityId){
         Activity activity = activityService.getActivityById(activityId);
         return ResponseEntity.ok(activity);
     }
-
-
-
 }
+/**
+ * Controller handles HTTP requests and responses.
+ * Service Layer contains business logic and interacts with the repository.
+ * Repository Layer communicates with the database.
+ */
 
 
 //    private final ActivityService activityService;
